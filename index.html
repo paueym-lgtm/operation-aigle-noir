@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
 <title>Opération Aigle Noir</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23ff373c' d='M3 27L16 9h20L23 27h-8l8-11h-5l-8 11z'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,6 +109,76 @@ body{margin:0;overflow:hidden;background:var(--ink);color:var(--khaki);font-fami
 @media (max-width:760px),(pointer:coarse){.nokb{display:block}#radarwrap{width:120px;height:120px}#vitals{width:190px}#weapon{min-width:170px}#alt{width:170px}#alt .big{font-size:2rem}}
 @media (max-width:760px){#menu{background:rgba(6,9,7,.88)}.keys{font-size:.9rem}}
 @media (prefers-reduced-motion:reduce){#feed div{animation:none}}
+
+/* Commandes tactiles : smartphones, tablettes et iPad */
+html,body{min-height:100%;overscroll-behavior:none}
+#stage canvas{touch-action:none}
+#touchControls{position:fixed;inset:0;z-index:12;pointer-events:none;font-family:var(--f-mono);color:#f1f0df}
+#touchControls[hidden]{display:none!important}
+#lookZone{position:absolute;top:14%;right:0;bottom:26%;width:64%;pointer-events:auto;touch-action:none;z-index:1;background:transparent}
+#lookZone span{position:absolute;top:8%;right:12px;max-width:150px;padding:5px 7px;border:1px solid rgba(200,216,160,.22);background:rgba(5,9,6,.2);color:rgba(220,230,195,.48);font-size:10px;letter-spacing:.08em;text-align:center;pointer-events:none}
+#movePad{position:absolute;left:calc(16px + env(safe-area-inset-left));bottom:calc(16px + env(safe-area-inset-bottom));width:clamp(112px,25vw,148px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(215,228,185,.58);background:radial-gradient(circle,rgba(160,190,125,.15) 0 35%,rgba(5,9,6,.28) 36% 68%,rgba(5,9,6,.15) 69%);box-shadow:inset 0 0 0 5px rgba(8,12,9,.2),0 4px 18px rgba(0,0,0,.2);pointer-events:auto;touch-action:none;z-index:3}
+#movePad:before,#movePad:after{content:"";position:absolute;left:50%;top:50%;background:rgba(215,228,185,.28);transform:translate(-50%,-50%);pointer-events:none}
+#movePad:before{width:1px;height:70%}#movePad:after{height:1px;width:70%}
+#movePad .stick{position:absolute;left:50%;top:50%;width:38%;height:38%;border-radius:50%;border:1px solid rgba(240,240,210,.78);background:radial-gradient(circle at 35% 30%,rgba(220,230,185,.68),rgba(48,61,39,.9));box-shadow:0 3px 12px #0008;transform:translate(-50%,-50%);pointer-events:none}
+#movePad .pad-label{position:absolute;left:0;right:0;bottom:9%;text-align:center;font-size:9px;letter-spacing:.15em;color:rgba(230,235,210,.74);pointer-events:none}
+#touchActions{position:absolute;right:calc(12px + env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));width:clamp(164px,34vw,218px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;pointer-events:none;z-index:4}
+.touch-btn{min-width:0;min-height:clamp(43px,6.5vh,57px);padding:6px 4px;border:1px solid rgba(203,220,166,.65);border-radius:3px;background:rgba(8,13,9,.78);color:#e8ebd5;font-family:var(--f-mono);font-size:clamp(10px,1.7vh,13px);font-weight:700;letter-spacing:.025em;text-align:center;line-height:1.1;box-shadow:0 3px 12px rgba(0,0,0,.25);pointer-events:auto;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+.touch-btn:active,.touch-btn.pressed{background:rgba(126,151,84,.9);border-color:#f3e6ac;color:#fff}
+.touch-btn[hidden]{display:none!important}
+#touchFire{background:rgba(148,38,28,.82);border-color:rgba(255,126,101,.92);font-family:var(--f-display);font-size:clamp(14px,2vh,19px);letter-spacing:.06em}
+#touchAim{background:rgba(22,37,24,.82)}
+#touchSpace{grid-column:1/-1;background:rgba(183,127,31,.9);border-color:#ffd16a;color:#17170f;font-family:var(--f-display);font-size:clamp(13px,2vh,17px);letter-spacing:.045em}
+#touchUse{background:rgba(39,68,46,.9)}
+#touchPause{position:absolute;top:calc(10px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);min-height:34px;padding:5px 13px;background:rgba(5,9,6,.65);font-size:11px;letter-spacing:.12em;z-index:5}
+@media (max-width:760px),(pointer:coarse){
+  #obj{top:calc(8px + env(safe-area-inset-top));left:calc(8px + env(safe-area-inset-left));padding:.35rem .5rem;gap:.35rem}
+  #obj b{font-size:clamp(1.45rem,5vw,2rem)}
+  #obj .lbl{font-size:.58rem;letter-spacing:.12em}
+  #radarwrap{top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));width:clamp(76px,19vw,116px);height:clamp(76px,19vw,116px)}
+  #feed{top:calc(88px + env(safe-area-inset-top));left:8px;font-size:.72rem;max-width:42vw}
+  #vitals{left:calc(9px + env(safe-area-inset-left));bottom:calc(166px + env(safe-area-inset-bottom));width:clamp(112px,28vw,190px);padding:.35rem .5rem}
+  #vitals .lbl{font-size:.62rem;letter-spacing:.12em}
+  #vitals b{font-size:1.35rem}
+  #vitals .bar{height:7px}
+  #weapon{right:calc(9px + env(safe-area-inset-right));bottom:calc(166px + env(safe-area-inset-bottom));min-width:clamp(116px,29vw,174px);padding:.35rem .5rem}
+  #wname{font-size:.75rem;letter-spacing:.04em}
+  #ammo b{font-size:1.65rem}
+  #ammo span{font-size:.85rem}
+  #gren{font-size:.65rem}
+  #alt{left:8px;top:36%;width:clamp(126px,35vw,170px);padding:.4rem .55rem}
+  #alt .big{font-size:1.8rem}
+  #alt .lbl{font-size:.62rem;letter-spacing:.1em}
+  #prompt{bottom:24vh;font-size:clamp(.85rem,3vw,1.15rem);letter-spacing:.05em;padding:0 9px;box-sizing:border-box}
+  #sub{bottom:calc(146px + env(safe-area-inset-bottom));font-size:clamp(11px,2.8vw,16px);letter-spacing:.06em;padding:0 12px;box-sizing:border-box}
+  #menu{padding:calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));background:rgba(6,9,7,.94);box-sizing:border-box}
+  .dossier{width:100%;max-width:560px;gap:clamp(.45rem,1.3vh,.8rem);margin:auto}
+  .stamp{font-size:.64rem;letter-spacing:.16em}
+  .dossier h1{font-size:clamp(2.2rem,9vw,4.3rem)}
+  .dossier .brief{font-size:clamp(.9rem,2.7vh,1.05rem);line-height:1.28}
+  .keys{font-size:clamp(.76rem,2vh,.93rem);gap:.2rem .6rem;padding-top:.55rem}
+  .keys b{font-size:.72rem}
+  #go,#again{min-height:48px;font-size:1.2rem;padding:.7rem 1rem}
+  .note{font-size:.68rem;line-height:1.35}
+  .nokb{display:none}
+}
+@media (orientation:landscape) and (max-height:520px){
+  #movePad{width:clamp(92px,25vh,124px);left:calc(10px + env(safe-area-inset-left));bottom:calc(8px + env(safe-area-inset-bottom))}
+  #touchActions{width:clamp(164px,38vh,194px);gap:5px;right:calc(8px + env(safe-area-inset-right));bottom:calc(7px + env(safe-area-inset-bottom))}
+  .touch-btn{min-height:clamp(35px,10vh,43px);font-size:10px;padding:4px 3px}
+  #touchSpace{font-size:12px}
+  #vitals,#weapon{bottom:calc(142px + env(safe-area-inset-bottom))}
+  #sub{bottom:calc(124px + env(safe-area-inset-bottom))}
+  #menu{padding-top:calc(10px + env(safe-area-inset-top));padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+  .dossier{gap:.38rem}
+  .dossier h1{font-size:clamp(2rem,7vh,3rem)}
+  .dossier .brief{font-size:.82rem;line-height:1.2}
+  .keys{font-size:.72rem;padding-top:.35rem}
+  .keys b{font-size:.68rem}
+  #go{min-height:40px;font-size:1rem;padding:.45rem .8rem}
+}
+@media (prefers-reduced-motion:reduce){#movePad .stick{transition:none}}
+
 </style>
 
 <div id="stage"></div>
@@ -134,6 +205,22 @@ body{margin:0;overflow:hidden;background:var(--ink);color:var(--khaki);font-fami
   <div id="weapon" class="panel"><div id="wname">—</div><div id="ammo"><b id="mag">0</b><span id="res">/ 0</span></div><div id="gren" class="lbl">Grenades <b id="gcount">0</b></div></div>
 </div>
 
+
+<div id="touchControls" hidden aria-label="Commandes tactiles">
+  <div id="lookZone" hidden aria-label="Glisser pour orienter la caméra"><span>GLISSER POUR REGARDER</span></div>
+  <div id="movePad" hidden aria-label="Joystick de déplacement"><span class="pad-label">DÉPLACER</span><div class="stick" id="moveStick"></div></div>
+  <button id="touchPause" class="touch-btn" type="button" data-touch="pause">PAUSE</button>
+  <div id="touchActions">
+    <button id="touchFire" class="touch-btn" type="button" data-touch="fire" hidden>TIRER</button>
+    <button id="touchAim" class="touch-btn" type="button" data-touch="aim" hidden>VISER</button>
+    <button id="touchSpace" class="touch-btn" type="button" data-touch="space" hidden>SAUT / PARACHUTE</button>
+    <button id="touchUse" class="touch-btn" type="button" data-touch="use" hidden>VÉHICULE</button>
+    <button id="touchReload" class="touch-btn" type="button" data-touch="reload" hidden>RECHARGER</button>
+    <button id="touchGrenade" class="touch-btn" type="button" data-touch="grenade" hidden>GRENADE</button>
+    <button id="touchWeapon" class="touch-btn" type="button" data-touch="weapon" hidden>ARME +</button>
+  </div>
+</div>
+
 <div id="menu">
   <div class="dossier">
     <div class="stamp">TOP SECRET // ACCÈS RESTREINT</div>
@@ -150,6 +237,7 @@ body{margin:0;overflow:hidden;background:var(--ink);color:var(--khaki);font-fami
     </div>
     <button id="go" type="button">LANCER LE SAUT</button>
     <div class="note">Jeu au clavier et à la souris. Cliquez dans la scène pour capturer la souris.</div>
+    <div class="note">Sur téléphone ou tablette : le mode paysage est conseillé.</div>
     <div class="nokb">Ce jeu demande un clavier : ouvrez-le sur ordinateur.</div>
   </div>
 </div>
@@ -3778,7 +3866,7 @@ function startMission(){
   G.phase='plane';G.t=0;G.over=false;G.startT=performance.now();planeT=0;planeJumped=false;planeScript=[0,0,0,0,0];
   if(!planeObj){planeObj=makePlane();scene.add(planeObj)}planeObj.visible=true;
   $('bars').classList.add('on');$('fade').style.transition='none';$('fade').style.opacity=1;requestAnimationFrame(()=>{$('fade').style.transition='opacity 1.8s ease';$('fade').style.opacity=0});
-  setHudMode('plane');requestLock();
+  setHudMode('plane');if(!touchCapable)requestLock();
   camera.fov=60;camera.updateProjectionMatrix();
 }
 function setHudMode(m){
@@ -4080,7 +4168,7 @@ function setNoLock(){if(noLock)return;noLock=true;$('pause').hidden=true;G.pause
 document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===cvs;if(!locked&&G.phase!=='menu'&&!G.over&&!noLock&&G.phase!=='win'&&G.phase!=='dead')pauseGame(true)});
 document.addEventListener('pointerlockerror',()=>{setNoLock()});
 function pauseGame(on){if(G.over||G.phase==='menu')return;G.paused=on;$('pause').hidden=!on;if(on){firing=false;for(const k in keys)keys[k]=false}}
-$('pause').addEventListener('click',()=>{pauseGame(false);requestLock()});
+$('pause').addEventListener('click',()=>{pauseGame(false);if(!touchCapable)requestLock()});
 window.addEventListener('blur',()=>{if(G.phase!=='menu'&&!G.over)pauseGame(true)});
 const BLOCK=new Set(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Tab']);
 window.addEventListener('keydown',e=>{
@@ -4123,6 +4211,7 @@ buildBase();buildTrees2();buildExtras();buildDressing();addContactAO();buildCarr
 let smokeT=0,lastT=performance.now(),camAngle=0,fpsT=0;
 function frame(now){
   requestAnimationFrame(frame);
+  syncTouchUI();
   let dt=Math.min(.05,(now-lastT)/1000);lastT=now;if(dt<=0)return;
   if(!G.paused){
     G.time+=dt;
@@ -4179,7 +4268,7 @@ function updateEnemiesWrap(dt){
   else if(G.phase==='menu'||G.phase==='plane'||G.phase==='freefall'||G.phase==='canopy')updateEnemies(dt);
   if(!G.over)G.phase=saved;
 }
-setQuality(2,true);
+setQuality(touchCapableQuality(),true);
 resetGameInit();
 function resetGameInit(){
   $('hud').hidden=true;VM.visible=false;vmWeapons.forEach((v,k)=>v.visible=k===0);updateHudWeapon();updateHudHp();
@@ -4187,5 +4276,144 @@ function resetGameInit(){
 }
 requestAnimationFrame(frame);
 window.__G=G;window.__P=P;window.__dbg={startMission,deployChute,enterGround,doJump,endGame,resetGame,enemies,vehicles,enterVehicle,exitVehicle,fireWeapon,explode,get planeT(){return planeT}};
+
+function touchCapableQuality(){return (('ontouchstart' in window)||(navigator.maxTouchPoints||0)>0||window.matchMedia('(pointer: coarse)').matches)?(Math.min(window.innerWidth,window.innerHeight)<600?0:1):2}
+
+/* ================= COMMANDES TACTILES ================= */
+const touchCapable = (('ontouchstart' in window) || (navigator.maxTouchPoints||0)>0 || window.matchMedia('(pointer: coarse)').matches);
+const touchRoot = $('touchControls');
+const lookZone = $('lookZone');
+const movePad = $('movePad');
+const moveStick = $('moveStick');
+const touchSpace = $('touchSpace');
+const touchUse = $('touchUse');
+const touchFire = $('touchFire');
+const touchAim = $('touchAim');
+const touchReload = $('touchReload');
+const touchGrenade = $('touchGrenade');
+const touchWeapon = $('touchWeapon');
+const mobileKeys = new Set();
+const pressedTouchButtons = new Set();
+let movePointer = null, lookPointer = null, touchWasPlaying = false;
+let moveOriginX = 0, moveOriginY = 0;
+function mobileKey(code,down){
+  if(down){
+    if(mobileKeys.has(code))return;
+    mobileKeys.add(code);
+    window.dispatchEvent(new KeyboardEvent('keydown',{code:code,bubbles:true,cancelable:true}));
+  }else{
+    if(!mobileKeys.has(code))return;
+    mobileKeys.delete(code);
+    window.dispatchEvent(new KeyboardEvent('keyup',{code:code,bubbles:true,cancelable:true}));
+  }
+}
+function releaseMobileInputs(){
+  Array.from(mobileKeys).forEach(code=>mobileKey(code,false));
+  pressedTouchButtons.forEach(btn=>releaseTouchButton(btn));
+  pressedTouchButtons.clear();
+  firing=false;ads=false;movePointer=null;lookPointer=null;
+  if(moveStick)moveStick.style.transform='translate(-50%,-50%)';
+}
+function setMoveKeys(x,y){
+  mobileKey('KeyW',y<-.22);mobileKey('KeyS',y>.22);
+  mobileKey('KeyA',x<-.22);mobileKey('KeyD',x>.22);
+}
+function moveJoystick(e){
+  const r=movePad.getBoundingClientRect();
+  const max=r.width*.32;
+  let dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+  dx=Math.max(-max,Math.min(max,dx));dy=Math.max(-max,Math.min(max,dy));
+  moveStick.style.transform='translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px))';
+  setMoveKeys(dx/max,dy/max);
+}
+movePad.addEventListener('pointerdown',e=>{
+  if(!touchCapable)return;
+  e.preventDefault();movePointer=e.pointerId;
+  try{movePad.setPointerCapture(e.pointerId)}catch(_){}
+  moveJoystick(e);
+});
+movePad.addEventListener('pointermove',e=>{if(e.pointerId===movePointer){e.preventDefault();moveJoystick(e)}});
+function stopMove(e){
+  if(movePointer!==null&&(e.pointerId===undefined||e.pointerId===movePointer)){
+    movePointer=null;setMoveKeys(0,0);moveStick.style.transform='translate(-50%,-50%)';
+  }
+}
+movePad.addEventListener('pointerup',stopMove);
+movePad.addEventListener('pointercancel',stopMove);
+movePad.addEventListener('lostpointercapture',stopMove);
+
+lookZone.addEventListener('pointerdown',e=>{
+  if(!touchCapable)return;
+  e.preventDefault();lookPointer=e.pointerId;moveOriginX=e.clientX;moveOriginY=e.clientY;
+  try{lookZone.setPointerCapture(e.pointerId)}catch(_){}
+});
+lookZone.addEventListener('pointermove',e=>{
+  if(e.pointerId!==lookPointer)return;
+  e.preventDefault();
+  const dx=e.clientX-moveOriginX,dy=e.clientY-moveOriginY;
+  moveOriginX=e.clientX;moveOriginY=e.clientY;
+  mouseDX+=dx*1.12;mouseDY+=dy*1.12;
+});
+function stopLook(e){if(lookPointer!==null&&(e.pointerId===undefined||e.pointerId===lookPointer))lookPointer=null}
+lookZone.addEventListener('pointerup',stopLook);
+lookZone.addEventListener('pointercancel',stopLook);
+lookZone.addEventListener('lostpointercapture',stopLook);
+
+function releaseTouchButton(btn){
+  if(!btn)return;
+  const action=btn.dataset.touch;
+  if(action==='fire')firing=false;
+  else if(action==='aim')ads=false;
+  else if(action==='space')mobileKey('Space',false);
+  else if(action==='use')mobileKey('KeyE',false);
+  else if(action==='reload')mobileKey('KeyR',false);
+  else if(action==='grenade')mobileKey('KeyG',false);
+  btn.classList.remove('pressed');pressedTouchButtons.delete(btn);
+}
+document.querySelectorAll('#touchActions .touch-btn').forEach(btn=>{
+  btn.addEventListener('pointerdown',e=>{
+    if(!touchCapable||btn.hidden)return;
+    e.preventDefault();
+    const action=btn.dataset.touch;
+    if(action==='pause'){pauseGame(!G.paused);return}
+    if(pressedTouchButtons.has(btn))return;
+    pressedTouchButtons.add(btn);btn.classList.add('pressed');
+    try{btn.setPointerCapture(e.pointerId)}catch(_){}
+    if(action==='fire'){firing=true;firePressed=true}
+    else if(action==='aim'){ads=true}
+    else if(action==='space'){mobileKey('Space',true)}
+    else if(action==='use'){mobileKey('KeyE',true)}
+    else if(action==='reload'){mobileKey('KeyR',true)}
+    else if(action==='grenade'){mobileKey('KeyG',true)}
+    else if(action==='weapon'){selectWeapon((cur+1)%4);releaseTouchButton(btn)}
+  });
+  ['pointerup','pointercancel','lostpointercapture'].forEach(name=>btn.addEventListener(name,e=>{
+    if(name!=='lostpointercapture'||pressedTouchButtons.has(btn))releaseTouchButton(btn);
+  }));
+});
+function syncTouchUI(){
+  if(!touchCapable){touchRoot.hidden=true;return}
+  const playing=!G.over&&!G.paused&&G.phase!=='menu';
+  touchRoot.hidden=!playing;
+  if(!playing){
+    if(touchWasPlaying)releaseMobileInputs();
+    touchWasPlaying=false;return;
+  }
+  touchWasPlaying=true;
+  const ph=G.phase,ground=ph==='ground',air=ph==='freefall'||ph==='canopy';
+  lookZone.hidden=ph==='plane'||ph==='landing';
+  movePad.hidden=ph==='plane'||ph==='landing';
+  const heli=!!(G.driving&&G.driving.type==='heli');
+  touchSpace.hidden=!(ph==='plane'||ph==='freefall'||(ground&&!G.driving)||heli);
+  if(ph==='plane')touchSpace.textContent='SAUTER DE L’AVION';
+  else if(ph==='freefall')touchSpace.textContent='OUVRIR LE PARACHUTE';
+  else if(heli)touchSpace.textContent='MONTER';
+  else touchSpace.textContent='SAUTER';
+  touchUse.hidden=!ground;
+  touchUse.textContent=G.driving?'DESCENDRE':(P.nearVeh?'MONTER DANS LE VÉHICULE':'INTERAGIR / E');
+  const combat=ground&&!G.driving;
+  touchFire.hidden=!combat;touchAim.hidden=!combat;
+  touchReload.hidden=!combat;touchGrenade.hidden=!combat;touchWeapon.hidden=!combat;
+}
 
 </script>
