@@ -4370,6 +4370,7 @@ function releaseTouchButton(btn){
   else if(action==='grenade')mobileKey('KeyG',false);
   btn.classList.remove('pressed');pressedTouchButtons.delete(btn);
 }
+$('touchPause').addEventListener('pointerdown',e=>{if(!touchCapable)return;e.preventDefault();pauseGame(!G.paused)});
 document.querySelectorAll('#touchActions .touch-btn').forEach(btn=>{
   btn.addEventListener('pointerdown',e=>{
     if(!touchCapable||btn.hidden)return;
